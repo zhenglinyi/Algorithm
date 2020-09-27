@@ -28,7 +28,7 @@ class Solution2 {
     public ListNode reverseList(ListNode head) {
         if(head==null||head.next==null)
             return head;
-        ListNode temp = reverseList(head.next);
+        ListNode temp = reverseList(head.next);//保存翻转以后的头结点
         head.next.next = head;
         head.next = null;
         return temp;
