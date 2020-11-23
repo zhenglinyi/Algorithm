@@ -45,6 +45,7 @@ public class _34 {
     public int[] searchRange(int[] nums, int target) {
         int[] targetRange = {-1, -1};
 
+        //寻找左边
         int leftIdx = extremeInsertionIndex(nums, target, true);
 
         // assert that `leftIdx` is within the array bounds and that `target`
@@ -54,6 +55,7 @@ public class _34 {
         }
 
         targetRange[0] = leftIdx;
+        //找右边大于target的第一个节点，然后减一
         targetRange[1] = extremeInsertionIndex(nums, target, false)-1;
 
         return targetRange;
