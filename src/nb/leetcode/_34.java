@@ -23,9 +23,10 @@ public class _34 {
         return targetRange;
 
     }*/
+    //2.二分查找
     // returns leftmost (or rightmost) index at which `target` should be
     // inserted in sorted array `nums` via binary search.
-    private int extremeInsertionIndex(int[] nums, int target, boolean left) {
+    /*private int extremeInsertionIndex(int[] nums, int target, boolean left) {
         int lo = 0;
         int hi = nums.length;
 
@@ -50,7 +51,7 @@ public class _34 {
 
         // assert that `leftIdx` is within the array bounds and that `target`
         // is actually in `nums`.
-        if (leftIdx == nums.length || nums[leftIdx] != target) {
+        if (leftIdx == nums.length  || nums[leftIdx] != target) {
             return targetRange;
         }
 
@@ -59,6 +60,31 @@ public class _34 {
         targetRange[1] = extremeInsertionIndex(nums, target, false)-1;
 
         return targetRange;
+    }*/
+    public int binaryFind(int[] nums, int target,boolean left){
+        int lo=0;
+        int hi=nums.length;
+
+        while(lo<hi){
+            int mid=(lo+hi)/2;
+            if(nums[mid]>target||(left&&nums[mid]==target)){
+                hi=mid;
+            }else{
+                lo=mid+1;
+            }
+        }
+        return lo;
     }
+    public int[] searchRange(int[] nums, int target) {
+        int[] targetRange={-1,-1};
+        int leftIndex=binaryFind(nums,target,true);
+        if(leftIndex==nums.length||nums[leftIndex]!=target){
+            return targetRange;
+        }
+        targetRange[0]=leftIndex;
+        targetRange[1]=binaryFind(nums,target,false)-1;
+        return targetRange;
+    }
+
 
 }
