@@ -20,6 +20,7 @@ class Solution {
         if (l >= r)
             return;
         int i = l, j = r;
+        //个人觉得应为l问题，所以先判断右边
         while (i < j) {
             while (i < j && arr[j] >= arr[l])
                 j--;
