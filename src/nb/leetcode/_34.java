@@ -87,4 +87,53 @@ public class _34 {
     }
 
 
+
+
+}
+
+class Solution {
+    int[] nums;
+    int target;
+    public int[] searchRange(int[] nums, int target) {
+        int[] res={-1,-1};
+        this.nums=nums;
+        this.target=target;
+        if(nums.length==0)
+            return res;
+        res[0]=left(0,nums.length-1);
+        res[1]=right(0,nums.length-1);
+        return res;
+    }
+    private int left(int l,int r){
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(nums[m]==target){
+                r=m-1;
+            }else if(nums[m]>target){
+                r=m-1;
+            }else if(nums[m]<target){
+                l=m+1;
+            }
+        }
+        if(l>=nums.length||nums[l]!=target)
+            return -1;
+        return l;
+
+    }
+    private int right(int l,int r){
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(nums[m]==target){
+                l=m+1;
+            }else if(nums[m]>target){
+                r=m-1;
+            }else if(nums[m]<target){
+                l=m+1;
+            }
+        }
+        if(r<0||nums[r]!=target)
+            return -1;
+        return r;
+
+    }
 }
