@@ -34,4 +34,32 @@ public class _39 {
     public static void main(String[] args) {
         
     }
+
+
+}
+
+class Solution {
+    List<List<Integer>> res=new ArrayList<>();
+    List<Integer> tmp=new LinkedList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        //利用回溯条件需要先进行排序
+        Arrays.sort(candidates); // 先进行排序
+        backTracking(candidates,target,0,0);
+        return res;
+    }
+    public void backTracking(int[] candidates, int target,int sum,int startIndex){
+        if(sum==target){
+            res.add(new ArrayList<>(tmp));
+            return;
+        }
+        for (int i = startIndex; i < candidates.length; i++) {
+            // 如果 sum + candidates[i] > target 就终止遍历
+            if (sum + candidates[i] > target) break;
+            sum+=candidates[i];
+            tmp.add(candidates[i]);
+            backTracking(candidates,target,sum,i);
+            sum-=candidates[i];
+            tmp.remove(tmp.size()-1);
+        }
+    }
 }
