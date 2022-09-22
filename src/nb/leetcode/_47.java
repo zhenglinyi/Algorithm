@@ -27,6 +27,7 @@ class Solution {
             if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false) {
                 continue;
             }
+
             if(used[i]){
                 continue;
             }else{

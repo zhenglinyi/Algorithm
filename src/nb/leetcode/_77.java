@@ -29,3 +29,24 @@ class Solution {
 
     }
 }
+
+class Solution {
+    List<List<Integer>> res=new LinkedList<>();
+    LinkedList<Integer> tmp=new LinkedList<>();
+    public List<List<Integer>> combine(int n, int k) {
+        backtrack(n,k,1);
+        return res;
+    }
+    void backtrack(int n, int k,int start){
+        if(tmp.size()==k){
+            res.add(new ArrayList<>(tmp));
+            return;
+        }
+        for (int i = start; i <=n-(k-tmp.size())+1; i++) {
+            tmp.add(i);
+            backtrack(n,k,i+1);
+            tmp.removeLast();
+        }
+
+    }
+}

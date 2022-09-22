@@ -27,6 +27,31 @@ class Node {
 }
 class Solution {
     public Node connect(Node root) {
+        Deque<Node> deque = new LinkedList<>();
+        if (root == null) return root;
+        deque.offer(root);
+        while(!deque.isEmpty()){
+            int len=deque.size();
+
+            while(len>0){
+                Node cur=deque.poll();
+                if(cur.left!=null) deque.offer(cur.left);
+                if(cur.right!=null) deque.offer(cur.right);
+                if(len==1){
+                    cur.next=null;
+                }else{
+                    cur.next=deque.peek();
+                }
+
+                len--;
+            }
+
+        }
+        return root;
+    }
+}
+class Solution {
+    public Node connect(Node root) {
         Deque<Node> deque=new LinkedList<>();
         if(root==null) return root;
         deque.offer(root);

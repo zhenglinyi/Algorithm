@@ -2,6 +2,7 @@ package nb.leetcode;
 
 public class _160 {
 }
+
 //A走完走B，B走完走A
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
@@ -11,6 +12,27 @@ public class Solution {
             B = B != null ? B.next : headA;
         }
         return A;
+    }
+}
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode tmpA = headA;
+        ListNode tmpB = headB;
+        while (tmpA != tmpB) {
+            if (tmpA != null) {
+                tmpA = tmpA.next;
+            } else {
+                tmpA = headB;
+            }
+            if (tmpB != null) {
+                tmpB = tmpB.next;
+            } else {
+                tmpB = headA;
+            }
+        }
+        return tmpA;
+
     }
 }
 

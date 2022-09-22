@@ -1,5 +1,6 @@
 package nb.leetcode;
 
+import javax.imageio.event.IIOReadProgressListener;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,6 +40,7 @@ class TreeNode {
         this.right = right;
     }
 }
+
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         Deque<TreeNode> deque=new LinkedList<>();
@@ -60,4 +62,26 @@ class Solution {
         }
         return res;
     }
+}
+
+class Solution {
+    List<List<Integer>> resL;
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if(root==null) return resL;
+        resL=new LinkedList<>();
+        traverse(root,1);
+        return resL;
+    }
+    void traverse(TreeNode root,int deep){
+
+        if(resL.size()<deep){
+            resL.add(new LinkedList<Integer>());
+        }
+        resL.get(deep-1).add(root.val);
+
+        if(root.left!=null) traverse(root.left,deep+1);
+        if(root.right!=null) traverse(root.right,deep+1);
+    }
+
+
 }

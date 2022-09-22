@@ -23,7 +23,7 @@ class Solution {
         for (int i = startIndex; i < candidates.length; i++) {
             // 如果 sum + candidates[i] > target 就终止遍历
             if (sum + candidates[i] > target) break;
-            //去重操作 同一层不能选一样的
+            //去重操作 同一层不能选一样的  不是开始，并且和前一个相等
             if (i > startIndex && candidates[i] == candidates[i - 1]) {
                 continue;
             }
@@ -36,6 +36,8 @@ class Solution {
     }
 }
 
+//used[i - 1] == true，说明同一树枝candidates[i - 1]使用过
+//        used[i - 1] == false，说明同一树层candidates[i - 1]使用过
 class Solution {
     List<List<Integer>> lists = new ArrayList<>();
     Deque<Integer> deque = new LinkedList<>();

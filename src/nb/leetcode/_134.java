@@ -25,3 +25,20 @@ class Solution {
         return start;
     }
 }
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int curRest=0;
+        int totalRest=0;
+        int start=0;
+        for (int i = 0; i < gas.length; i++) {
+            int rest=gas[i]-cost[i];
+            curRest+=rest;
+            totalRest+=rest;
+            if(curRest<0) start=i+1;
+
+        }
+        if(totalRest<0) return -1;
+        return start;
+    }
+}

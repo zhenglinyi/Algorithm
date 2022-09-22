@@ -63,3 +63,31 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    int sum=0;
+    List<List<Integer>> res=new LinkedList<>();
+    LinkedList<Integer> tmp=new LinkedList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        backtrack(candidates,target,0);
+        return res;
+    }
+    void backtrack(int[] candidates, int target,int start){
+        if(sum==target){
+            res.add(new ArrayList<>(tmp));
+            return;
+        }
+        if(sum>target)
+            return;
+        for (int i = 0; i < candidates.length; i++) {
+            sum+=candidates[i];
+            tmp.addLast(candidates[i]);
+            backtrack(candidates,target,start);
+            tmp.removeLast();
+            sum-=candidates[i];
+
+        }
+    }
+
+}

@@ -21,3 +21,5 @@ class Solution {
         return res;
     }
 }
+
+//循环的时候用一个哈希表记录，一边记录一边查找target-nums[i]

@@ -8,6 +8,7 @@ public class _454 {
 
 
 class Solution {
+    //用一个哈希表记录12的和，用另一个哈希表记录34的和
     public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
         Map<Integer,Integer> map12sum=new HashMap<>();
         Map<Integer,Integer> map34sum=new HashMap<>();
@@ -22,6 +23,7 @@ class Solution {
             }
         }
         int res=0;
+        //遍历两个哈希表，统计和为0的个数
         for (int sum12 : map12sum.keySet()) {
             for (int sum34 : map34sum.keySet()) {
                 if(sum12+sum34==0){

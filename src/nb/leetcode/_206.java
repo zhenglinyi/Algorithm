@@ -9,6 +9,39 @@ class ListNode {
     ListNode next;
     ListNode(int x) { val = x; }
 }
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        ListNode pre=head;
+        ListNode cur=head.next;
+        //注意指向空
+        head.next=null;
+        while(cur!=null){
+            ListNode tmp=cur.next;
+            cur.next=pre;
+            pre=cur;
+            cur=tmp;
+        }
+        return pre;
+    }
+}
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head==null||head.next==null){
+            return head;
+        }
+        //递归找到最后返回的节点
+        ListNode res=reverseList(head.next);
+        //递归过程中修改链表结构
+        ListNode pre=head;
+        ListNode cur=head.next;
+        cur.next=pre;
+        pre.next=null;
+        return res;
+    }
+}
 //迭代
 class Solution {
     public ListNode reverseList(ListNode head) {
@@ -47,8 +80,6 @@ class Solution2 {
     }
 }
 public class _206 {
-    public static void main(String[] args) {
-        System.out.println("待遇性");
-    }
+
 }
 

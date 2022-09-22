@@ -25,3 +25,24 @@ class Solution {
         return dp;
     }
 }
+
+class Solution {
+    public double[] dicesProbability(int n) {
+        double[][] dp=new double[n+1][6*n+1];
+        for(int i=1;i<=6;i++){
+            dp[1][i]=1/6.0;
+        }
+        for (int i = 2; i <=n; i++) {
+            for (int j = i-1; j <= 6*(i-1); j++) {
+                for (int k = 1; k <= 6 ; k++) {
+                    dp[i][j+k]+=dp[i-1][j]/6.0;
+                }
+            }
+        }
+        double[] res=new double[6*n-n+1];
+        for (int i = 0; i < res.length; i++) {
+            res[i]=dp[n][i+n];
+        }
+        return res;
+    }
+}}

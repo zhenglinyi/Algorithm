@@ -19,3 +19,26 @@ class Solution {
     }
 
 }
+
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root==null) return true;
+        return !(isHeight(root)==-1);
+    }
+    int isHeight(TreeNode root){
+        if(root==null) return 0;
+
+        int lH=isHeight(root.left);
+        int rH=isHeight(root.right);
+        if(lH==-1||rH==-1)
+            return -1;
+        if(Math.abs(lH-rH)<=1){
+            return Math.max(lH,rH)+1;
+        }else{
+            return -1;
+        }
+
+    }
+
+}
+

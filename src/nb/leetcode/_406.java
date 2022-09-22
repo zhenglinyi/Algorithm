@@ -75,3 +75,18 @@ class Solution {
         return res.toArray(new int[res.size()][]);
     }
 }
+
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people,((o1, o2) -> {
+            if(o1[0]==o2[0])
+                return o1[1]-o2[1];
+            return o2[0]-o1[0];
+        }));
+        List<int[]> res=new ArrayList<>();
+        for (int[] person : people) {
+            res.add(person[1],person);
+        }
+        return res.toArray(new int[0][0]);
+    }
+}

@@ -1,8 +1,6 @@
 package nb.leetcode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class _151 {
 }
@@ -17,10 +15,57 @@ class Solution {
         Collections.reverse(wordList);
         return String.join(" ",wordList);
     }
-
 }
 
 
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder sb=trimSpace(s);
+        reverseString(sb,0,sb.length()-1);
+        reverseWord(sb);
+        return sb.toString();
+    }
+    StringBuilder trimSpace(String s){
+        StringBuilder sb=new StringBuilder();
+        int start=0;
+        int end=s.length()-1;
+        while(s.charAt(start)==' ')
+            start++;
+        while(s.charAt(end)==' ')
+            end--;
+        while(start<=end){
+            if(s.charAt(start)!=' '||sb.charAt(sb.length()-1)==' ')
+                sb.append(s.charAt(start));
+            start++;
+        }
+        return sb;
+
+    }
+    void reverseString(StringBuilder sb,int start,int end){
+        while(start<end){
+            char tmp=sb.charAt(start);
+            sb.setCharAt(start,sb.charAt(end));
+            sb.setCharAt(end,tmp);
+            start++;
+            end--;
+        }
+
+    }
+    void reverseWord(StringBuilder sb){
+        int start=0;
+        int end=0;
+        while(end<sb.length()){
+            while(end<sb.length()&&sb.charAt(end)!=' '){
+                end++;
+            }
+            reverseString(sb,start,end);
+            start=end+1;
+            end=end+1;
+        }
+
+    }
+
+}
 class Solution {
     public String reverseWords(String s) {
         StringBuilder sb=trimSpace(s);
@@ -74,3 +119,38 @@ class Solution {
 
 
 }
+
+//用双端队列记录的方法
+class Solution {
+    public String reverseWords(String s) {
+        int left = 0, right = s.length() - 1;
+        // 去掉字符串开头的空白字符
+        while (left <= right && s.charAt(left) == ' ') {
+            ++left;
+        }
+
+        // 去掉字符串末尾的空白字符
+        while (left <= right && s.charAt(right) == ' ') {
+            --right;
+        }
+
+        Deque<String> d = new ArrayDeque<String>();
+        StringBuilder word = new StringBuilder();
+
+        while (left <= right) {
+            char c = s.charAt(left);
+            if ((word.length() != 0) && (c == ' ')) {
+                // 将单词 push 到队列的头部
+                d.offerFirst(word.toString());
+                word.setLength(0);
+            } else if (c != ' ') {
+                word.append(c);
+            }
+            ++left;
+        }
+        d.offerFirst(word.toString());
+
+        return String.join(" ", d);
+    }
+}
+

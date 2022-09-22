@@ -12,6 +12,7 @@ class Solution {
             if(prices[i]+fee<buy){
                 buy=prices[i]+fee;
             }
+
             //持有时机加利润
             if(prices[i]>buy){
                 res+=prices[i]-buy;
@@ -35,5 +36,22 @@ class Solution {
             dp[i][1]=Math.max(dp[i-1][1],dp[i-1][0]+prices[i]-fee);
         }
         return dp[prices.length-1][1];
+    }
+}
+
+class Solution {
+    public int maxProfit(int[] prices, int fee) {
+        int buy=prices[0];
+        int res=0;
+        for (int i = 1; i < prices.length; i++) {
+            if(prices[i]<buy){
+                buy = prices[i];
+            }
+            if(prices[i]-buy>fee){
+                res+=prices[i]-buy-fee;
+                buy=prices[i]-fee;
+            }
+        }
+        return res;
     }
 }

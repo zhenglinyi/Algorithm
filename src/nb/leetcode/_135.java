@@ -1,6 +1,8 @@
 package nb.leetcode;
 
 import javax.swing.plaf.metal.MetalIconFactory;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class _135 {
 }
@@ -29,5 +31,27 @@ class Solution {
         }
         return sum;
 
+    }
+}
+
+class Solution {
+    public int candy(int[] ratings) {
+        int[] candys=new int[ratings.length];
+        Arrays.fill(candys,1);
+        for (int i = 1; i < candys.length; i++) {
+            if(ratings[i]>ratings[i-1]){
+                candys[i]=candys[i-1]+1;
+            }
+        }
+        for (int i = candys.length-2; i >=0 ; i--) {
+            if(ratings[i]>ratings[i+1]){
+                candys[i]=Math.max(candys[i],candys[i+1]+1);
+            }
+        }
+        int sum=0;
+        for (int i = 0; i < candys.length; i++) {
+            sum+=candys[i];
+        }
+        return sum;
     }
 }

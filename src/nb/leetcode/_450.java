@@ -20,10 +20,12 @@ class Solution {
             }else{
                 TreeNode tmp=root.left;
                 TreeNode cur=root.right;
-                root.left=null;
+
+//                root.left=null;
                 while(cur.left!=null){
                     cur=cur.left;
                 }
+                //再把它加到最后面
                 cur.left=tmp;
                 return root.right;
             }
@@ -31,3 +33,4 @@ class Solution {
         return root;
     }
 }
+

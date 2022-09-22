@@ -26,6 +26,30 @@ class Solution {
     }
 
 }
+//在上一个版本上的改进
+class Solution {
+    int minValue=Integer.MAX_VALUE;
+    int preValue=Integer.MIN_VALUE;
+
+    public int getMinimumDifference(TreeNode root) {
+        recur(root);
+        return minValue;
+    }
+    public void recur(TreeNode root){
+        if(root==null) return;
+        //左
+        recur(root.left);
+        if(preValue!=Integer.MIN_VALUE)
+            //中
+            if(minValue>root.val-preValue){
+                minValue=root.val-preValue;
+            }
+        preValue=root.val;
+        recur(root.right);
+
+    }
+
+}
 
 class Solution {
     TreeNode pre;// 记录上一个遍历的结点

@@ -53,3 +53,32 @@ class Solution {
         return countNodes(root.left)+countNodes(root.right)+1;
     }
 }
+
+class Solution {
+    public int countNodes(TreeNode root) {
+        //退出条件
+        if (root == null) return 0;
+
+        int leftHeight = 0, rightHeight = 0;
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        while (left != null) {
+            left = left.left;
+            leftHeight++;
+        }
+        while (right != null) {
+            right = right.right;
+            rightHeight++;
+        }
+        //如果是满二叉树
+        if (leftHeight == rightHeight) {
+            return (2 << leftHeight) - 1;
+        }
+        //不是满二叉树看左右子树是不是满二叉树
+        return countNodes(root.left) + countNodes(root.right) + 1;
+    }
+}
+
+
+
+

@@ -1,5 +1,7 @@
 package nb.leetcode;
 
+import java.util.ArrayDeque;
+
 public class _226 {
 }
 /**
@@ -44,3 +46,31 @@ class Solution {
         root.left=tmp;
     }
 }
+
+//BFS
+
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) {return null;}
+        ArrayDeque<TreeNode> deque = new ArrayDeque<>();
+        deque.offer(root);
+        while (!deque.isEmpty()) {
+            int size = deque.size();
+            while (size-- > 0) {
+                TreeNode node = deque.poll();
+                swap(node);
+                //先交换，再把交换后的节点放进去
+                if (node.left != null) {deque.offer(node.left);}
+                if (node.right != null) {deque.offer(node.right);}
+            }
+        }
+        return root;
+    }
+
+    public void swap(TreeNode root) {
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+    }
+}
+

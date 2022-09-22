@@ -1,6 +1,7 @@
 package nb.leetcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class _257 {
@@ -44,5 +45,30 @@ class Solution {
         //回溯
         path.remove(path.size()-1);
 
+    }
+}
+
+
+class Solution {
+    LinkedList<String> path;
+    List<String> res;
+    public List<String> binaryTreePaths(TreeNode root) {
+        path=new LinkedList<>();
+        res=new ArrayList<>();
+        recur(root);
+        return res;
+    }
+    void recur(TreeNode root){
+        path.add(String.valueOf(root.val));
+        if(root.left==null&&root.right==null){
+            res.add(String.join("->",path));
+        }
+
+        if(root.left!=null)
+            recur(root.left);
+        if(root.right!=null)
+            recur(root.right);
+
+        path.removeLast();
     }
 }

@@ -38,3 +38,27 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res=new LinkedList<>();
+        Deque<TreeNode> deque=new LinkedList<>();
+        if(root==null) return res;
+        deque.offer(root);
+        while(!deque.isEmpty()){
+            int len=deque.size();
+            while (len>0){
+                TreeNode cur=deque.poll();
+                if(len==1){
+                    res.add(cur.val);
+                }
+                if(cur.left!=null) deque.offer(cur.left);
+                if(cur.right!=null) deque.offer(cur.right);
+                len--;
+
+            }
+
+        }
+        return res;
+    }
+}

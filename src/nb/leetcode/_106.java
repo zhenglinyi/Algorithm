@@ -31,3 +31,28 @@ class Solution {
     }
 
 }
+
+class Solution {
+    int[] inorder;
+    int[] postorder;
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        this.inorder=inorder;
+        this.postorder=postorder;
+        return build(0,inorder.length,0,postorder.length);
+    }
+    TreeNode build(int inLeft,int inRight,int postLeft,int postRight){
+        if(inLeft==inRight) return null;
+        int rootVal=postorder[postRight-1];
+        TreeNode root=new TreeNode(rootVal);
+        int index=0;
+        for (int i = inLeft; i < inRight; i++) {
+            if(inorder[i]==rootVal){
+                index=i;
+            }
+        }
+        root.left=build(inLeft,index,postLeft,postLeft+index-inLeft);
+        root.right=build(index+1,inRight,postLeft+index-inLeft,postRight-1);
+        return root;
+    }
+
+}

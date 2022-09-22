@@ -137,3 +137,54 @@ class Solution {
 
     }
 }
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] res=new int[]{-1,-1};
+        if(nums.length==0||nums==null){
+            return res;
+        }
+        res[0]=left(nums,target);
+        res[1]=right(nums,target);
+        return res;
+    }
+    public int left(int[] nums, int target){
+        int l=0;
+        int r=nums.length-1;
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(nums[m]==target){
+                r=m-1;
+            }else if(nums[m]>target){
+                r=m-1;
+            }else if(nums[m]<target){
+                l=m+1;
+            }
+        }
+        if(l<0||l>nums.length-1||nums[l]!=target){
+            return -1;
+        }else{
+            return l;
+        }
+    }
+    public int right(int[] nums, int target){
+        int l=0;
+        int r=nums.length-1;
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(nums[m]==target){
+                l=m+1;
+            }else if(nums[m]>target){
+                r=m-1;
+            }else if(nums[m]<target){
+                l=m+1;
+            }
+        }
+        if(r<0||r>nums.length-1||nums[r]!=target){
+            return -1;
+        }else{
+            return r;
+        }
+    }
+
+}

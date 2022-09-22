@@ -1,5 +1,9 @@
 package nb.leetcode;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class _98 {
 }
 
@@ -18,5 +22,30 @@ class Solution {
         boolean right=isValidBST(root.right);
         return left&&right;
 
+    }
+}
+
+
+
+class Solution {
+    List<Integer> resL;
+    public boolean isValidBST(TreeNode root) {
+        resL=new LinkedList<>();
+        recur(root);
+        long max=Long.MIN_VALUE;
+        for (int i : resL) {
+            if(i<=max)
+                return false;
+            max=i;
+        }
+        return true;
+    }
+    void recur(TreeNode root){
+        if(root==null){
+            return;
+        }
+        recur(root.left);
+        resL.add(root.val);
+        recur(root.right);
     }
 }

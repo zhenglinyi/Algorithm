@@ -42,6 +42,28 @@ class Solution {
         return head;
     }
 }
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        if(head==null){
+            return head;
+        }
+        ListNode temp=new ListNode(-1,head);
+        ListNode pre=temp;
+        ListNode cur=head;
+        while(cur!=null){
+            if(cur.val==val){
+                pre.next=cur.next;
+                cur=cur.next;
+            }else{
+                pre=pre.next;
+                cur=cur.next;
+            }
+        }
+        return temp.next;
+    }
+}
+
+
 
 //添加虚拟头节点
 public ListNode removeElements(ListNode head, int val) {

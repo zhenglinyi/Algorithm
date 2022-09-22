@@ -1,8 +1,5 @@
 package nb.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class _234 {
     /**
      * Definition for singly-linked list.
@@ -73,7 +70,7 @@ public class _234 {
             }
 
             // 还原链表并返回结果
-            firstHalfEnd.next = reverseList(secondHalfStart);
+//            firstHalfEnd.next = reverseList(secondHalfStart);
             return result;
         }
         //链表反转

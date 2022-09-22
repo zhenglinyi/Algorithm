@@ -1,6 +1,7 @@
 package nb.leetcode;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class _76 {
 }
@@ -33,6 +34,63 @@ class Solution {
             if(cnt==t.length()&&r-l+1<length){
                 length=r-l+1;
                 res=s.substring(l,r+1);
+            }
+        }
+        return res;
+
+    }
+}
+class Solution {
+    public String minWindow(String s, String t) {
+        //需要的
+        Map<Character,Integer> need=new HashMap<>();
+        //窗口
+        Map<Character,Integer> window=new HashMap<>();
+        //统计需要的
+        for (int i = 0; i < t.length(); i++) {
+            char tmpc=t.charAt(i);
+            need.put(tmpc,need.getOrDefault(tmpc,0)+1);
+        }
+        //左右指针
+        int left=0;
+        int right=0;
+        int valid=0;
+
+        String res="";
+        int length=Integer.MAX_VALUE;
+
+        while(right<s.length()){
+            // c 是将移入窗口的字符
+            char c=s.charAt(right);
+            // 右移窗口
+            right++;
+            // 进行窗口内数据的一系列更新
+            if(need.containsKey(c)){
+                window.put(c,window.getOrDefault(c,0)+1);
+                if(need.get(c).equals(window.get(c))){
+                    valid++;
+                }
+            }
+            // 判断左侧窗口是否要收缩
+            while(valid==need.size()){
+                // 在这里更新最小覆盖子串
+                if(right-left<length){
+                    length=right-left;
+                    res=s.substring(left,right);
+                }
+                // d 是将移出窗口的字符
+                char d=s.charAt(left);
+                // 左移窗口
+                left++;
+                // 进行窗口内数据的一系列更新
+                if(need.containsKey(d)){
+                    if(need.get(d).equals(window.get(d))){
+                        valid--;
+                    }
+
+                    window.put(d,window.get(d)-1);
+                }
+
             }
         }
         return res;

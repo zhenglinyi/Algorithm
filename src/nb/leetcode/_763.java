@@ -30,3 +30,27 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+        int[] fina=new int[26];
+        List<Integer> res=new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            fina[s.charAt(i)-'a']=i;
+        }
+        int last=0;
+        int tmpl=0;
+        for (int i = 0; i <s.length(); i++) {
+            char c= s.charAt(i);
+            tmpl=Math.max(tmpl,fina[c-'a']);
+            if(i==tmpl){
+                res.add(i-last+1);
+                last=i+1;
+            }
+        }
+        return res;
+
+
+
+    }
+}
