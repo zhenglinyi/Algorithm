@@ -14,6 +14,7 @@ public class Main{
             int b=Integer.parseInt(strings[1]);
             System.out.println(a+b);
         }
+
     }
 }
 
